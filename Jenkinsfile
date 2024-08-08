@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Submit Stack') {
             steps {
-                sh "aws cloudformation create-stack --stack-name s3bucket --template-body file://jenkins_test.yaml --region 'us-east-1'"
+                sh "aws cloudformation create-stack --stack-name s3bucket --template-body file://jenkins_test.json --region 'us-east-1'"
                 }
             }    
         }
