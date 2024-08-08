@@ -22,5 +22,14 @@ pipeline {
                 sh 'npm test'
             }
         }
+       stage('Read YAML') {
+            steps {
+                script {
+                    // Ensure the Pipeline Utility Steps plugin is installed
+                    def config = readYaml file: 'jenkins_test.yaml'
+                    echo "The value from YAML file: ${config.someValue}"
+                }
+            }
+        } 
     }
 }
