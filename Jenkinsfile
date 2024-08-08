@@ -22,14 +22,10 @@ pipeline {
                 sh 'npm test'
             }
         }
-       stage('Read YAML') {
+       stage('Submit Stack') {
             steps {
-                script {
-                    // Ensure the Pipeline Utility Steps plugin is installed
-                    def config = readYaml file: 'jenkins_test.yaml'
-                    echo "The value from YAML file: ${config.someValue}"
-                }
-            }
-        } 
+            sh "aws cloudformation create-stack --stack-name s3bucket --template-body file://jenkins_test.yaml --region 'us-east-1'"
+              }
+             }
     }
 }
